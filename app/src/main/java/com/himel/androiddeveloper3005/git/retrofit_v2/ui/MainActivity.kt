@@ -36,12 +36,19 @@ class MainActivity : AppCompatActivity() {
 
         saveBtn.setOnClickListener {
             val number = numberEtx.text.toString()
-            viewModel.getPost1(Integer.parseInt(number))
+            viewModel.getCustomPosts(Integer.parseInt(number))
 
-            viewModel.myResponse1.observe(this, Observer { response ->
+            viewModel.customResponse.observe(this, Observer { response ->
 
                 if(response.isSuccessful){
                     showTxt.setText(response.body()?.toString()!!)
+                    response.body()?.forEach{
+                        Log.d("response",it.myUserID.toString())
+                        Log.d("response",it.id.toString())
+                        Log.d("response",it.title.toString())
+                        Log.d("response",it.body.toString())
+
+                    }
 
                 }else{
                     showTxt.setText(response.errorBody().toString())

@@ -10,7 +10,13 @@ class Repository {
     }
 
     //for dynamic end point
+    //path annotation
     suspend fun  getPost1(number: Int) : Response<Post>{
         return RetrofitInstance.api.getPost1(number)
+    }
+
+    //query annotation
+    suspend fun getCustomPosts(userId: Int) : Response<List<Post>>{
+        return RetrofitInstance.api.getCustomPost(userId)
     }
 }
