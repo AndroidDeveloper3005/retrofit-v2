@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         saveBtn.setOnClickListener {
             val number = numberEtx.text.toString()
-            viewModel.getCustomPosts(Integer.parseInt(number))
+            viewModel.getCustomPosts(Integer.parseInt(number),"id","desc")
 
             viewModel.customResponse.observe(this, Observer { response ->
 

@@ -18,9 +18,13 @@ interface Api {
             @Path("postNumber") number: Int
     ) : Response<Post>
 
-    //Queary annotation
+    //Query annotation
+    //multiple query annotation
     @GET("posts")
     suspend fun getCustomPost(
-            @Query("userId") userId : Int
+            @Query("userId") userId : Int,
+            @Query("_sort") sort : String,
+            @Query("_order") order : String
+
     ) : Response<List<Post>>
 }
