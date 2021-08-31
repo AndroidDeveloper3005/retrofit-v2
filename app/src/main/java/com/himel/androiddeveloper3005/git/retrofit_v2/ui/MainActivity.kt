@@ -33,12 +33,18 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this,viewModelFactory)
                 .get(MainViewModel ::class.java)
 
+        //query map
+        val options : HashMap<String , String> = HashMap()
+        options["_sort"] = "id"
+        options["order"] = "desc"
+
 
         saveBtn.setOnClickListener {
-            val number = numberEtx.text.toString()
-            viewModel.getCustomPosts(Integer.parseInt(number),"id","desc")
 
-            viewModel.customResponse.observe(this, Observer { response ->
+            val number = numberEtx.text.toString()
+            viewModel.getCustomPosts1(Integer.parseInt(number),options)
+
+            viewModel.customResponse1.observe(this, Observer { response ->
 
                 if(response.isSuccessful){
                     showTxt.setText(response.body()?.toString()!!)
