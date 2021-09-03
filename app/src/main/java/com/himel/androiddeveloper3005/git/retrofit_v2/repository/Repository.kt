@@ -5,23 +5,12 @@ import com.himel.androiddeveloper3005.git.retrofit_v2.model.Post
 import retrofit2.Response
 
 class Repository {
-    suspend fun getPost() : Response<Post>{
-        return RetrofitInstance.api.getPost()
+    suspend fun pushPosts(post: Post) : Response<Post>{
+        return RetrofitInstance.api.pushPost(post)
     }
 
-    //for dynamic end point
-    //path annotation
-    suspend fun  getPost1(number: Int) : Response<Post>{
-        return RetrofitInstance.api.getPost1(number)
+    suspend fun pushPosts_1(userID : Int,id : Int, title : String , body : String) : Response<Post>{
+        return RetrofitInstance.api.pushPost_1(userID,id,title ,body )
     }
 
-    //query annotation
-    suspend fun getCustomPosts(userId: Int,sort : String , order: String) : Response<List<Post>>{
-        return RetrofitInstance.api.getCustomPost(userId,sort,order)
-    }
-    //query map annotation
-    suspend fun getCustomPosts1(userId: Int , options : Map<String,String>) : Response<List<Post>>{
-        return RetrofitInstance.api.getCustomPosts1(userId,options)
-
-    }
 }

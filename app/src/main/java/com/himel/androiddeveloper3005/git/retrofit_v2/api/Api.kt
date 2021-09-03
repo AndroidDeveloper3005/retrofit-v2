@@ -5,32 +5,21 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface Api {
-    @GET("posts/1")  //"posts/1" is end point of link
-    suspend fun getPost() : Response<Post>
-
-    //get end point dynamically
-    //path anotation
-
-    @GET("posts/{postNumber}")
-    suspend fun getPost1(
-            @Path("postNumber") number: Int
+    //post request
+    @POST("posts")
+    suspend fun pushPost(
+            @Body post: Post
     ) : Response<Post>
 
-    //Query annotation
-    //multiple query annotation
-    @GET("posts")
-    suspend fun getCustomPost(
-            @Query("userId") userId : Int,
-            @Query("_sort") sort : String,
-            @Query("_order") order : String
+    //post request
+    @FormUrlEncoded //jodi ai annotation na ullekh kori thahole data JSON format
+    // e server e jay!!! ar annotation dele data key and velue te alada take
+    @POST("posts")
+    suspend fun pushPost_1(
+            @Field("myUserID") myUserID : Int,
+            @Field("id") id : Int,
+            @Field("title") title : String,
+            @Field("body") body : String
 
-    ) : Response<List<Post>>
-
-    //Query map
-    @GET("posts")
-    suspend fun getCustomPosts1(
-            @Query("userId") userId : Int,
-            @QueryMap options: Map<String,String>
-
-            ): Response<List<Post>>
+    ) : Response<Post>
 }
